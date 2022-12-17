@@ -1,0 +1,24 @@
+.popup__borderline {
+  margin: 0 auto 0;
+  padding: 0;
+  max-width: 358px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  font-style: normal;
+}
+
+.popup__borderline:first-of-type {
+  margin: 0 auto 30px;
+}
+
+@media screen and (max-width: 580px) {
+  .popup__borderline {
+    max-width: 238px;
+    margin: 0 22px ;
+  }
+  .popup__borderline:first-of-type {
+    margin: 0 22px 30px;
+  }
+}
