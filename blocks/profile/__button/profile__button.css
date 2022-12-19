@@ -3,6 +3,7 @@
   background-color: transparent;
   background-repeat: no-repeat;
   background-position: 50%;
+  background-size: 22px;
   margin: 0;
   padding: 0;
   width: 150px;
@@ -21,5 +22,6 @@
   .profile__button {
     width: 282px;
     margin: 36px 0 0 0;
+    background-size: 16px;
   }
 }
