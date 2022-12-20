@@ -17,74 +17,72 @@
         <img src="./image/profile_avatar.jpg" class="profile__avatar" alt="ава">
         <div class="profile__info">
           <div>
-            <h2 class="profile__title">Жак-Ив Кусто</h2>
+            <h1 class="profile__title">Жак-Ив Кусто</h1>
             <p class="profile__subtitle">Исследователь океана</p>
           </div>
           <button type="button" class="profile__edit-button"></button>
         </div>
       </div>
-      <button class="profile__button"></button>
+      <button type="button" class="profile__button"></button>
     </section>
     <section class="elements">
-      <figure class="element">
+      <article class="element">
         <img src="./image/meme_cow.jpg" class="element__image" alt="мем">
         <figcaption class="element__figcaption">
           <h3 class="element__title">Аэродинамика коровы</h3>
-          <button class="element__like"></button>
+          <button type="button" class="element__like"></button>
         </figcaption>
-      </figure>
-      <figure class="element">
+      </article>
+      <article class="element">
         <img src="./image/meme_rtxoff.PNG" class="element__image" alt="мем">
-        <figcaption class="element__figcaption">
+        <div class="element__figcaption">
           <h3 class="element__title">RTX off</h3>
-          <button class="element__like"></button>
-        </figcaption>
-      </figure>
-      <figure class="element">
+          <button type="button" class="element__like"></button>
+        </div>
+      </article>
+      <article class="element">
         <img src="./image/meme_rtxon.PNG" class="element__image" alt="мем">
-        <figcaption class="element__figcaption">
+        <div class="element__figcaption">
           <h3 class="element__title">RTX on</h3>
-          <button class="element__like"></button>
-        </figcaption>
-      </figure>
-      <figure class="element">
+          <button type="button" class="element__like"></button>
+        </div>
+      </article>
+      <article class="element">
         <img src="./image/meme_serdit.PNG" class="element__image" alt="мем">
-        <figcaption class="element__figcaption">
+        <div class="element__figcaption">
           <h3 class="element__title">Сердитый</h3>
-          <button class="element__like"></button>
-        </figcaption>
-      </figure>
-      <figure class="element">
+          <button type="button" class="element__like"></button>
+        </div>
+      </article>
+      <article class="element">
         <img src="./image/meme_gigachad.JPG" class="element__image" alt="мем">
-        <figcaption class="element__figcaption">
+        <div class="element__figcaption">
           <h3 class="element__title">Gigachad</h3>
-          <button class="element__like"></button>
-        </figcaption>
-      </figure>
-      <figure class="element">
+          <button type="button" class="element__like"></button>
+        </div>
+      </article>
+      <article class="element">
         <img src="./image/meme_bunny.JPG" class="element__image" alt="мем">
-        <figcaption class="element__figcaption">
+        <div class="element__figcaption">
           <h3 class="element__title">Bunny</h3>
-          <button class="element__like"></button>
-        </figcaption>
-      </figure>
+          <button type="button" class="element__like"></button>
+        </div>
+      </article>
     </section>
   </main>
   <footer class="footer">
     <p class="footer__copyright">&#169; 2022 HockeyBear Russia</p>
   </footer>
   <!-- <section class="popup popup__opened"> открывает popup окно -->
-    <section class="popup">
+    <section class="popup popup_opened">
     <div class="popup__container">
       <h2 class="popup__heading">Редактировать профиль</h2>
-      <form class="popup__form">
-        <input type="text" class="popup__input popup__input_name" value="Жак-ив Кусто" name="name" id="name">
-        <hr class="popup__borderline">
-        <input type="text" class="popup__input popup__input_job" value="Исследователь океана" name="job" id="job">
-        <hr class="popup__borderline">
+      <form class="popup__form" name="edit_form">
+        <input type="text" class="popup__input popup__input_type_name" value="Жак-ив Кусто" name="name" id="name">
+        <input type="text" class="popup__input popup__input_type_job" value="Исследователь океана" name="job" id="job">
         <button type="submit" class="popup__button">Сохранить</button>
       </form>
-      <button class="popup__close">
+      <button type="button" class="popup__close">
       </button>
     </div>
   </section>
