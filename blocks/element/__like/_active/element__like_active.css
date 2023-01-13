@@ -1,0 +1,6 @@
+.element__like_active {
+  opacity: 1;
+  background-image: url(../../../image/activelike.svg);
+  object-fit: contain;
+  object-position: 100%;
+}

@@ -26,55 +26,14 @@
       <button type="button" class="profile__button"></button>
     </section>
     <section class="elements">
-      <article class="element">
-        <img src="./image/meme_cow.jpg" class="element__image" alt="мем">
-        <div class="element__figcaption">
-          <h3 class="element__title">Аэродинамика коровы</h3>
-          <button type="button" class="element__like"></button>
-        </div>
-      </article>
-      <article class="element">
-        <img src="./image/meme_rtxoff.PNG" class="element__image" alt="мем">
-        <div class="element__figcaption">
-          <h3 class="element__title">RTX off</h3>
-          <button type="button" class="element__like"></button>
-        </div>
-      </article>
-      <article class="element">
-        <img src="./image/meme_rtxon.PNG" class="element__image" alt="мем">
-        <div class="element__figcaption">
-          <h3 class="element__title">RTX on</h3>
-          <button type="button" class="element__like"></button>
-        </div>
-      </article>
-      <article class="element">
-        <img src="./image/meme_serdit.PNG" class="element__image" alt="мем">
-        <div class="element__figcaption">
-          <h3 class="element__title">Сердитый</h3>
-          <button type="button" class="element__like"></button>
-        </div>
-      </article>
-      <article class="element">
-        <img src="./image/meme_gigachad.JPG" class="element__image" alt="мем">
-        <div class="element__figcaption">
-          <h3 class="element__title">Gigachad</h3>
-          <button type="button" class="element__like"></button>
-        </div>
-      </article>
-      <article class="element">
-        <img src="./image/meme_bunny.JPG" class="element__image" alt="мем">
-        <div class="element__figcaption">
-          <h3 class="element__title">Bunny</h3>
-          <button type="button" class="element__like"></button>
-        </div>
-      </article>
+
     </section>
   </main>
   <footer class="footer">
     <p class="footer__copyright">&#169; 2022 HockeyBear Russia</p>
   </footer>
-  <!-- <section class="popup popup__opened"> открывает popup окно -->
-    <section class="popup">
+  <!-- <section class="popup popup_opened"> открывает popup окно -->
+  <section class="popup popup_invisible">
     <div class="popup__container">
       <h2 class="popup__heading">Редактировать профиль</h2>
       <form class="popup__form" name="edit_form">
@@ -86,5 +45,26 @@
       </button>
     </div>
   </section>
+  <section class="popup popup_invisible" id="popup-add">
+    <div class="popup__container">
+      <h2 class="popup__heading">Новое место</h2>
+      <form class="popup__form">
+        <input type="text" class="popup__input" placeholder="Название" name="add-name" id="add-name">
+        <input type="url" class="popup__input" placeholder="Ссылка на картинку" name="add-img" id="add-img">
+        <button type="submit" class="popup__button" id="popup-add-card">Создать</button>
+      </form>
+      <button type="button" class="popup__close" id="popup-add-close">
+    </div>
+  </section>
+  <template id="element-template">
+    <article class="element">
+      <img src="" class="element__image" alt="">
+      <div class="element__figcaption">
+        <h3 class="element__title"></h3>
+        <button type="button" class="element__like"></button>
+      </div>
+    </article>
+  </template>
+  <script src="scripts/index.js"></script>
 </body>
 </html>
