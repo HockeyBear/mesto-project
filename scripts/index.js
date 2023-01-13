@@ -74,15 +74,6 @@ function addCard(evt) {
 
 buttonAddCard.addEventListener('click', addCard);
 
-initialCards.forEach(function (item) {
-  const elementTemplate = document.querySelector('#element-template').content;
-  const element = elementTemplate.cloneNode(true);
-  element.querySelector('.element__image').src = item.link;
-  element.querySelector('.element__title').textContent = item.name;
-
-  elementContainer.prepend(element);
-});
-
 
 const initialCards = [
   {
@@ -110,3 +101,12 @@ const initialCards = [
     link: 'https://media.tenor.com/JA54ZFxi1c0AAAAC/booba-twitch.gif'
   }
 ];
+
+initialCards.forEach(function (item) {
+  const elementTemplate = document.querySelector('#element-template').content;
+  const element = elementTemplate.cloneNode(true);
+  element.querySelector('.element__image').src = item.link;
+  element.querySelector('.element__title').textContent = item.name;
+
+  elementContainer.prepend(element);
+});
