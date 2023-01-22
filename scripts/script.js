@@ -55,15 +55,14 @@ function handleFormSubmit(evt) {
 formElement.addEventListener('submit', handleFormSubmit);
 //----------------------------------------------------------------
 
-function addCard(evt) {
-  evt.preventDefault();
+function addCard(name, link) {
   const elementTemplate = document.querySelector('#element-template').content;
   const element = elementTemplate.querySelector('.element').cloneNode(true);
   const addNameInput = document.querySelector('#add-name');
   const addImgInput = document.querySelector('#add-img');
 
-  element.querySelector('.element__image').src = addImgInput.value;
-  element.querySelector('.element__title').textContent = addNameInput.value;
+  element.querySelector('.element__image').src = addImgInput.link;
+  element.querySelector('.element__title').textContent = addNameInput.name;
 
   popupAdd.classList.add('popup_invisible');
   elementContainer.prepend(element);
@@ -102,11 +101,16 @@ const initialCards = [
   }
 ];
 
-initialCards.forEach(function (item) {
-  const elementTemplate = document.querySelector('#element-template').content;
-  const element = elementTemplate.cloneNode(true);
-  element.querySelector('.element__image').src = item.link;
-  element.querySelector('.element__title').textContent = item.name;
+//function initAddCard() {
+  //initialCards.forEach(item => elementContainer.prepend(addCard(item.name, item.link)));
+//
+//};
 
-  elementContainer.prepend(element);
-});
+initialCards.forEach(function(item) {
+  const elementTemplate = document.querySelector('#element-template').content;
+  const element = elementTemplate.querySelector('.element').cloneNode(true);
+  
+  addCard(item.name, item.link);
+})
+
+initAddCard();
