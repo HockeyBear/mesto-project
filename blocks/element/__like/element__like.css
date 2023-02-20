@@ -9,6 +9,7 @@
   height: 19px;
   border: none;
   cursor: pointer;
+  transition: .3s;
 }
 
 .element__like:hover {

@@ -56,13 +56,23 @@
       <button type="button" class="popup__close" id="popup-add-close">
     </div>
   </section>
+  <section class="popup popup__image popup_invisible" id="popup-view">
+    <div class="popup__conatiner_view-image">
+      <button type="button" class="popup__close" id="popup-view-close"></button>
+      <img src="" class="popup__image_view-image">
+      <p class="popup__image_view-info"></p>
+    </div>
+  </section>
   <template id="element-template">
     <article class="element">
-      <img src="" class="element__image" alt="">
+      <button class="element__open-image">
+        <img src="" class="element__image" alt="">
+      </button>
       <div class="element__figcaption">
         <h3 class="element__title"></h3>
         <button type="button" class="element__like"></button>
       </div>
+      <button type="button" class="element__trash"></button>
     </article>
   </template>
   <script src="scripts/script.js"></script>
