@@ -33,36 +33,36 @@
     <p class="footer__copyright">&#169; 2022 HockeyBear Russia</p>
   </footer>
   <!-- <section class="popup popup_opened"> открывает popup окно -->
-  <section class="popup popup_invisible">
+  <div class="popup" id="popup-edit">
     <div class="popup__container">
       <h2 class="popup__heading">Редактировать профиль</h2>
-      <form class="popup__form" name="edit_form">
-        <input type="text" class="popup__input popup__input_type_name" value="Жак-ив Кусто" name="name" id="name">
-        <input type="text" class="popup__input popup__input_type_job" value="Исследователь океана" name="job" id="job">
+      <form class="popup__form" id="edit-form">
+        <input type="text" class="popup__input popup__input_type_name" placeholder="Имя и Фамилия" name="name" id="name">
+        <input type="text" class="popup__input popup__input_type_job" placeholder="Вид деятельности" name="job" id="job">
         <button type="submit" class="popup__button">Сохранить</button>
       </form>
-      <button type="button" class="popup__close">
+      <button type="button" class="popup__close" id="popup-edit-close">
       </button>
     </div>
-  </section>
-  <section class="popup popup_invisible" id="popup-add">
+  </div>
+  <div class="popup" id="popup-add">
     <div class="popup__container">
       <h2 class="popup__heading">Новое место</h2>
-      <form class="popup__form">
+      <form class="popup__form" id="add_form">
         <input type="text" class="popup__input" placeholder="Название" name="add-name" id="add-name">
         <input type="url" class="popup__input" placeholder="Ссылка на картинку" name="add-img" id="add-img">
         <button type="submit" class="popup__button" id="popup-add-card">Создать</button>
       </form>
       <button type="button" class="popup__close" id="popup-add-close">
     </div>
-  </section>
-  <section class="popup popup__image popup_invisible" id="popup-view">
-    <div class="popup__conatiner_view-image">
+  </div>
+  <div class="popup popup__image" id="popup-view">
+    <div class="popup__conatiner_view-image" >
       <button type="button" class="popup__close" id="popup-view-close"></button>
       <img src="" class="popup__image_view-image">
       <p class="popup__image_view-info"></p>
     </div>
-  </section>
+  </div>
   <template id="element-template">
     <article class="element">
       <button class="element__open-image">
@@ -75,6 +75,7 @@
       <button type="button" class="element__trash"></button>
     </article>
   </template>
+  <script src="cards/cards.js"></script>
   <script src="scripts/script.js"></script>
 </body>
 </html>
