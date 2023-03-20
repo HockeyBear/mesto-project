@@ -65,34 +65,34 @@ const addNameInput = document.querySelector('#add-name');
 const addImgInput = document.querySelector('#add-img');
 
 //Добавление карточки через массив, кнопку, Ивент лайка, просмотр карточки.
-function addCard(name, link, alt) {
+function addCard(name, link) {
 
   const element = elementTemplate.querySelector('.element').cloneNode(true);
   const templateImg = element.querySelector('.element__image');
   const templateTitle = element.querySelector('.element__title');
   templateImg.src = link;
-  templateImg.alt = alt;
+  templateImg.alt = name;
   templateTitle.textContent = name;
 
   popupAdd.classList.remove('popup_add');
-  elementContainer.prepend(element);
   
   element.querySelector('.element__like').addEventListener('click', function(evt) {
     evt.target.classList.toggle('element__like_active');
   });
 
   const delButton = document.querySelector('.element__trash');
-  element.querySelector('.element__trash').addEventListener('click', function() {
-    const delCard = delButton.closest('.element');
-    delCard.remove();
+  element.querySelector('.element__trash').addEventListener('click', function(evt) {
+    const targetEl = evt.target;
+    const targetItem = targetEl.closest('.element');
+    targetItem.remove();
   });
 
   const viewImage = document.querySelector('.popup__image_view-image');
   const viewInfo = document.querySelector('.popup__image_view-info');
   element.querySelector('.element__open-image').addEventListener('click', function() {
     viewElement.classList.add('popup_opened');
-    viewImage.alt.value = "#";
     viewImage.src = link;
+    viewImage.alt = name;
     viewInfo.textContent = name;
   });
   return element;
@@ -100,7 +100,7 @@ function addCard(name, link, alt) {
 
 buttonAddCard.addEventListener('click', (evt) => {
   evt.preventDefault();
-  addCard(addNameInput.value, addImgInput.value);
+  elementContainer.prepend(addCard(addNameInput.value, addImgInput.value));
   addNameInput.value = "";
   addImgInput.value = "";
 });
