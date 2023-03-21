@@ -15,22 +15,14 @@ const viewElement = document.querySelector('#popup-view');
 
 
 //Открывание popup окон
-function openPopupEdit() {
-  popupEdit.classList.add('popup_opened');
+function openClosePopupEdit() {
+  popupEdit.classList.toggle('popup_opened');
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
 }
 
-function closePopupEdit() {
-  popupEdit.classList.remove('popup_opened');
-}
-
-function openPopupAdd() {
-  popupAdd.classList.add('popup_add');
-}
-
-function closePopupAdd() {
-  popupAdd.classList.remove('popup_add');
+function openClosePopupAdd() {
+  popupAdd.classList.toggle('popup_add');
 }
 
 const closeView = document.querySelector('#popup-view-close');
@@ -40,10 +32,10 @@ function closeViewImage() {
 }
 closeView.addEventListener('click', closeViewImage);
 
-buttonOpenEdit.addEventListener('click', openPopupEdit);
-popupCloseEdit.addEventListener('click', closePopupEdit);
-buttonOpenAdd.addEventListener('click', openPopupAdd);
-buttonCloseAdd.addEventListener('click', closePopupAdd);
+buttonOpenEdit.addEventListener('click', openClosePopupEdit);
+popupCloseEdit.addEventListener('click', openClosePopupEdit);
+buttonOpenAdd.addEventListener('click', openClosePopupAdd);
+buttonCloseAdd.addEventListener('click', openClosePopupAdd);
 //----------------------------------------------------------------
 
 // Редактироване Имени и деятельности
@@ -53,7 +45,7 @@ function handleFormSubmitEdit(evt) {
   const jobValue = jobInput.value;
   profileName.textContent = nameValue;
   profileJob.textContent = jobValue;
-  closePopupEdit();
+  openClosePopupEdit();
 }
 
 formElementEdit.addEventListener('submit', handleFormSubmitEdit);
@@ -87,8 +79,8 @@ function addCard(name, link) {
     targetItem.remove();
   });
 
-  const viewImage = document.querySelector('.popup__image_view-image');
-  const viewInfo = document.querySelector('.popup__image_view-info');
+  const viewImage = document.querySelector('.popup__image');
+  const viewInfo = document.querySelector('.popup__info');
   element.querySelector('.element__open-image').addEventListener('click', function() {
     viewElement.classList.add('popup_opened');
     viewImage.src = link;
