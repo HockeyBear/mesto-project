@@ -3,7 +3,7 @@ const buttonOpenAdd = document.querySelector('.profile__button');
 const popupEdit = document.querySelector('#popup-edit');
 const popupAdd = document.querySelector('#popup-add');
 const buttonCloseAdd = document.querySelector('#popup-add-close');
-const buttonAddCard = document.getElementById('popup-add-card');
+const buttonAddCard = document.getElementById('add_form');
 const popupCloseEdit = document.querySelector('#popup-edit-close');
 const profileName = document.querySelector('.profile__title');
 const profileJob = document.querySelector('.profile__subtitle');
@@ -18,21 +18,23 @@ const closeView = document.querySelector('#popup-view-close');
 
 
 //Открывание popup окон
-function popupOpen(popup) {
+function openPopup(popup) {
   popup.classList.add('popup_opened');
-  nameInput.value = profileName.textContent;
-  jobInput.value = profileJob.textContent;
 }
 
-function popupClose(popup) {
+function closePopup(popup) {
   popup.classList.remove('popup_opened');
 }
 
-buttonOpenEdit.addEventListener('click', ()=> popupOpen(popupEdit));
-popupCloseEdit.addEventListener('click', ()=> popupClose(popupEdit));
-buttonOpenAdd.addEventListener('click', ()=> popupOpen(popupAdd));
-buttonCloseAdd.addEventListener('click', ()=> popupClose(popupAdd));
-closeView.addEventListener('click', ()=> popupClose(viewElement));
+buttonOpenEdit.addEventListener('click', ()=> {
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileJob.textContent;
+  openPopup(popupEdit);
+});
+popupCloseEdit.addEventListener('click', ()=> closePopup(popupEdit));
+buttonOpenAdd.addEventListener('click', ()=> openPopup(popupAdd));
+buttonCloseAdd.addEventListener('click', ()=> closePopup(popupAdd));
+closeView.addEventListener('click', ()=> closePopup(viewElement));
 //----------------------------------------------------------------
 
 // Редактироване Имени и деятельности
@@ -42,7 +44,7 @@ function handleFormSubmitEdit(evt) {
   const jobValue = jobInput.value;
   profileName.textContent = nameValue;
   profileJob.textContent = jobValue;
-  popupClose(popupEdit);
+  closePopup(popupEdit);
 }
 
 formElementEdit.addEventListener('submit', handleFormSubmitEdit);
@@ -75,7 +77,7 @@ function addCard(name, link) {
 
   element.querySelector('.element__open-image').addEventListener('click', function() {
     //viewElement.classList.add('popup_opened');
-    popupOpen(viewElement);
+    openPopup(viewElement);
     viewImage.src = link;
     viewImage.alt = name;
     viewInfo.textContent = name;
@@ -88,7 +90,7 @@ buttonAddCard.addEventListener('submit', (evt) => {
   elementContainer.prepend(addCard(addNameInput.value, addImgInput.value));
   addNameInput.value = "";
   addImgInput.value = "";
-  popupClose(popupAdd);
+  closePopup(popupAdd);
 });
 
 function initAddCard() {
