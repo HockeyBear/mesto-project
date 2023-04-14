@@ -31,6 +31,19 @@ buttonOpenEdit.addEventListener('click', ()=> {
   jobInput.value = profileJob.textContent;
   openPopup(popupEdit);
 });
+
+popupEdit.addEventListener('click', function(evt) {
+  if(evt.target.classList.contains('popup')) {
+    evt.target.classList.toggle('popup_opened');
+  }
+});
+
+popupAdd.addEventListener('click', function(evt) {
+  if(evt.target.classList.contains('popup')) {
+    evt.target.classList.toggle('popup_opened');
+  }
+});
+
 popupCloseEdit.addEventListener('click', ()=> closePopup(popupEdit));
 buttonOpenAdd.addEventListener('click', ()=> openPopup(popupAdd));
 buttonCloseAdd.addEventListener('click', ()=> closePopup(popupAdd));
