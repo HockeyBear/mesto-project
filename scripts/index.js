@@ -2,14 +2,15 @@ const buttonOpenEdit = document.querySelector('.profile__edit-button');
 const buttonOpenAdd = document.querySelector('.profile__button');
 const popupEdit = document.querySelector('#popup-edit');
 const popupAdd = document.querySelector('#popup-add');
+const formAdd = document.forms.add;
+const addCardBtn = add.elements.addCardBtn;
 const buttonCloseAdd = document.querySelector('#popup-add-close');
-const buttonAddCard = document.getElementById('add_form');
 const popupCloseEdit = document.querySelector('#popup-edit-close');
 const profileName = document.querySelector('.profile__title');
 const profileJob = document.querySelector('.profile__subtitle');
-const formElementEdit = document.querySelector('#edit-form');
-const nameInput = document.querySelector('#name');
-const jobInput = document.querySelector('#job');
+const formEdit = document.forms.edit;
+const namee = formEdit.elements.name;
+const job = formEdit.elements.job;
 const elementContainer = document.querySelector('.elements');
 const viewElement = document.querySelector('#popup-view');
 const viewImage = document.querySelector('.popup__image');
@@ -27,8 +28,8 @@ function closePopup(popup) {
 }
 
 buttonOpenEdit.addEventListener('click', ()=> {
-  nameInput.value = profileName.textContent;
-  jobInput.value = profileJob.textContent;
+  namee.value = profileName.textContent;
+  job.value = profileJob.textContent;
   openPopup(popupEdit);
 });
 
@@ -44,6 +45,12 @@ popupAdd.addEventListener('click', function(evt) {
   }
 });
 
+viewElement.addEventListener('click', function(evt) {
+  if(evt.target.classList.contains('popup')) {
+    evt.target.classList.toggle('popup_opened');
+  }
+});
+
 popupCloseEdit.addEventListener('click', ()=> closePopup(popupEdit));
 buttonOpenAdd.addEventListener('click', ()=> openPopup(popupAdd));
 buttonCloseAdd.addEventListener('click', ()=> closePopup(popupAdd));
@@ -51,22 +58,31 @@ closeView.addEventListener('click', ()=> closePopup(viewElement));
 //----------------------------------------------------------------
 
 // Редактироване Имени и деятельности
-function handleFormSubmitEdit(evt) {
+//function handleFormSubmitEdit(evt) {
+//  evt.preventDefault();
+//  const nameValue = nameInput.value;
+//  const jobValue = jobInput.value;
+//  profileName.textContent = nameValue;
+//  profileJob.textContent = jobValue;
+//  closePopup(popupEdit);
+//}
+
+formEdit.addEventListener('submit', function(evt) {
   evt.preventDefault();
-  const nameValue = nameInput.value;
-  const jobValue = jobInput.value;
+  const nameValue = namee.value;
+  const jobValue = job.value;
   profileName.textContent = nameValue;
   profileJob.textContent = jobValue;
+  namee.value = '';
+  job.value = '';
   closePopup(popupEdit);
-}
-
-formElementEdit.addEventListener('submit', handleFormSubmitEdit);
+});
 //----------------------------------------------------------------
 
 
 const elementTemplate = document.querySelector('#element-template').content;
-const addNameInput = document.querySelector('#add-name');
-const addImgInput = document.querySelector('#add-img');
+const addName = formAdd.elements.addName;
+const addImg = formAdd.elements.addImg;
 
 //Добавление карточки через массив, кнопку, Ивент лайка, просмотр карточки.
 function addCard(name, link) {
@@ -98,13 +114,28 @@ function addCard(name, link) {
   return element;
 }
 
-buttonAddCard.addEventListener('submit', (evt) => {
+function setSubmitButtonState(isFormValid) {
+  if(isFormValid) {
+    addCardBtn.removeAttribute('disabled');
+    addCardBtn.classList.remove('popup__button_disabled');
+  } else {
+    addCardBtn.setAttribute('disabled', true);
+    addCardBtn.classList.add('popup__button_disabled');
+  }
+}
+
+formAdd.addEventListener('submit', function (evt) {
   evt.preventDefault();
-  elementContainer.prepend(addCard(addNameInput.value, addImgInput.value));
-  addNameInput.value = "";
-  addImgInput.value = "";
+  elementContainer.prepend(addCard(addName.value, addImg.value));
+  formAdd.reset();
+  setSubmitButtonState(false);
   closePopup(popupAdd);
 });
+
+formAdd.addEventListener('input', function (evt) {
+  const isValid = addName.value.length > 0 && addImg.value.length > 0;
+  setSubmitButtonState(isValid);
+})
 
 function initAddCard() {
   initialCards.forEach(item => elementContainer.prepend(addCard(item.name, item.link)));
@@ -112,3 +143,32 @@ function initAddCard() {
 };
 
 initAddCard();
+
+//valid
+const AddElement = document.querySelector('.popup__form');
+const formInput = AddElement.querySelector('.popup__input');
+const formAddError = AddElement.querySelector(`.${formInput.id}-error`);
+
+const showError = (input, errorMessage) => {
+  input.classList.add('popup__input:invalid');
+  formAddError.textContent = errorMessage;
+  formAddError.classList.add('.popup__input-error_active');
+};
+
+const hideError = (input) => {
+  input.classList.remove('popup__input:invalid');
+  formAddError.classList.remove('.popup__input-error_active');
+  formAddError.textContent = '';
+};
+
+const checkInputValidity = () => {
+  if(!formInput.validity.valid) {
+    showError(formInput, formInput.validationMessage);
+  } else {
+    hideError(formInput);
+  }
+};
+
+formInput.addEventListener('input', function() {
+  checkInputValidity();
+});
