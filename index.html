@@ -36,10 +36,12 @@
   <div class="popup" id="popup-edit">
     <div class="popup__container">
       <h2 class="popup__heading">Редактировать профиль</h2>
-      <form name="edit" class="popup__form" id="edit-form">
+      <form class="popup__form" name="edit" id="edit-form">
+        <fieldset class="popup__set">
         <input type="text" class="popup__input popup__input_type_name" placeholder="Имя и Фамилия" name="name" id="name">
         <input type="text" class="popup__input popup__input_type_job" placeholder="Вид деятельности" name="job" id="job">
         <button type="submit" class="popup__button">Сохранить</button>
+      </fieldset>
       </form>
       <button type="button" class="popup__close" id="popup-edit-close">
       </button>
@@ -49,11 +51,13 @@
     <div class="popup__container">
       <h2 class="popup__heading">Новое место</h2>
       <form class="popup__form" name="add" id="add_form" novalidate>
-        <input type="text" class="popup__input" placeholder="Название" name="addName" id="add-name" minlength="2" maxlength="30" required>
-        <span class="add-name-error popup__input-error"></span>
-        <input type="url" class="popup__input" placeholder="Ссылка на картинку" name="addImg" id="add-img" required>
-        <span class="popup__input-error"></span>
-        <button type="submit" class="popup__button popup__button_disabled" name="addCardBtn" id="popup-add-card" disabled>Создать</button>
+        <fieldset class="popup__set">
+          <input type="text" class="popup__input" placeholder="Название" name="addName" id="add-name" minlength="2" maxlength="30" pattern="^[a-zA-Zа-яА-Я -]+$" required>
+          <span class="popup__input-error add-name-error"></span>
+          <input type="url" class="popup__input" placeholder="Ссылка на картинку" name="addImg" id="add-img" required>
+          <span class="popup__input-error add-img-error">popup__input-error</span>
+          <button type="submit" class="popup__button popup__button_disabled" name="addCardBtn" id="popup-add-card" disabled>Создать</button>
+        </fieldset>
       </form>
       <button type="button" class="popup__close" id="popup-add-close">
     </div>
