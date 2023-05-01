@@ -18,6 +18,7 @@ const viewInfo = document.querySelector('.popup__info');
 const closeView = document.querySelector('#popup-view-close');
 
 
+
 //Открывание popup окон
 function openPopup(popup) {
   popup.classList.add('popup_opened');
@@ -118,14 +119,14 @@ formAdd.addEventListener('submit', function (evt) {
   evt.preventDefault();
   elementContainer.prepend(addCard(addName.value, addImg.value));
   formAdd.reset();
-  toggleButtonState(false);
   closePopup(popupAdd);
+  toggleButtonState();
 });
 
-formAdd.addEventListener('input', function (evt) {
-  const isValid = addName.value.length > 0 && addImg.value.length > 0;
-  toggleButtonState(isValid);
-})
+// formAdd.addEventListener('input', function (evt) {
+//   const isValid = addName.value.length > 0 && addImg.value.length > 0;
+//   toggleButtonState(inputList, buttonElement);
+// })
 
 function initAddCard() {
   initialCards.forEach(item => elementContainer.prepend(addCard(item.name, item.link)));
@@ -188,13 +189,13 @@ const enableValidation = () => {
   });
 };
 
-function hasInvalidInput (inputList) {
+function hasInvalidInput(inputList) {
   return inputList.some((inputElement) => {
     return !inputElement.validity.valid;
   });
 };
 
-function toggleButtonState (inputList, buttonElement) {
+function toggleButtonState(inputList, buttonElement) {
   if (hasInvalidInput(inputList)) {
     buttonElement.disabled = true;
     buttonElement.classList.add('popup__button_disabled');
