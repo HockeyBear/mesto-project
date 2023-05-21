@@ -36,10 +36,12 @@
   <div class="popup" id="popup-edit">
     <div class="popup__container">
       <h2 class="popup__heading">Редактировать профиль</h2>
-      <form class="popup__form" name="edit" id="edit-form">
+      <form class="popup__form" name="edit" id="edit-form" novalidate>
         <fieldset class="popup__set">
-        <input type="text" class="popup__input popup__input_type_name" placeholder="Имя и Фамилия" name="name" id="name">
-        <input type="text" class="popup__input popup__input_type_job" placeholder="Вид деятельности" name="job" id="job">
+        <input type="text" class="popup__input" placeholder="Имя и Фамилия" name="namee" id="name" minlength="2" maxlength="40" required>
+        <span class="popup__input-error name-error"></span>
+        <input type="text" class="popup__input" placeholder="Вид деятельности" name="job" id="job" minlength="2" maxlength="200" required>
+        <span class="popup__input-error job-error">popup__input-error</span>
         <button type="submit" class="popup__button">Сохранить</button>
       </fieldset>
       </form>
@@ -50,9 +52,9 @@
   <div class="popup" id="popup-add">
     <div class="popup__container">
       <h2 class="popup__heading">Новое место</h2>
-      <form class="popup__form" name="add" id="add_form" novalidate>
+      <form class="popup__form" name="add" id="add-form" novalidate>
         <fieldset class="popup__set">
-          <input type="text" class="popup__input" placeholder="Название" name="addName" id="add-name" minlength="2" maxlength="30" pattern="^[a-zA-Zа-яА-Я -]+$" required>
+          <input type="text" class="popup__input add-popup__form" placeholder="Название" name="addName" id="add-name" minlength="2" maxlength="30" pattern="^[a-zA-Zа-яА-Я -]+$" required>
           <span class="popup__input-error add-name-error"></span>
           <input type="url" class="popup__input" placeholder="Ссылка на картинку" name="addImg" id="add-img" required>
           <span class="popup__input-error add-img-error">popup__input-error</span>

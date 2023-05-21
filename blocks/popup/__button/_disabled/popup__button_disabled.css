@@ -3,6 +3,7 @@
     color: #000;
     border: 1px solid #000000;
     opacity: 30%;
+    pointer-events: none;
 }
 
 .popup__button_disabled:hover {
