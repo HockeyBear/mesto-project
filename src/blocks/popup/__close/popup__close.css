@@ -1,6 +1,5 @@
 .popup__close {
   position: absolute;
-  background-image: url(../../../image/close.svg);
   background-repeat: no-repeat;
   background-color: transparent;
   background-size: contain;

@@ -8,12 +8,12 @@ const initialCards = [
       link: 'https://otvet.imgsmail.ru/download/215206472_a52b7a855d5c8be485d6a85e3452e551.jpg'
     },
     {
-      name: 'RTX off',
-      link: './image/meme_rtxoff.PNG'
+      name: 'Knight',
+      link: 'https://uploads-ssl.webflow.com/62ffc936658cff9b8da61a79/633d18e8fd3a708710c337c8_knight.png'
     },
     {
-      name: 'RTX on',
-      link: './image/meme_rtxon.PNG'
+      name: 'Чмони',
+      link: 'https://avatars.mds.yandex.net/i?id=c9413785f523e6117710519233e04478-7069324-images-thumbs&n=13'
     },
     {
       name: 'Peepo',
