@@ -31,7 +31,7 @@ const buttonCloseAdd = document.querySelector('#popup-add-close');
 const popupCloseEdit = document.querySelector('#popup-edit-close');
 const closeView = document.querySelector('#popup-view-close');
 
-//Открывание popup окон
+//Открывание popup окон / Закрывание popup окон
 function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', keyHandler);
@@ -43,7 +43,6 @@ function closePopup(popup) {
   document.removeEventListener('keydown', keyHandler);
 }
 
-//Закрывание popup окон
 const keyHandler = (evt) => {
   if(evt.key === 'Escape') {
     const popupActive = document.querySelector('.popup_opened');
@@ -51,14 +50,52 @@ const keyHandler = (evt) => {
   }
 }
 
-export { profileName,
+buttonOpenEdit.addEventListener('click', () => {
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileJob.textContent;
+  openPopup(popupEdit);
+});
+
+popupEdit.addEventListener('mousedown', function(evt) {
+  if(evt.target.classList.contains('popup')) {
+    evt.target.classList.toggle('popup_opened');
+  }
+});
+
+popupAdd.addEventListener('mousedown', function(evt) {
+  if(evt.target.classList.contains('popup')) {
+    evt.target.classList.toggle('popup_opened');
+  }
+});
+
+viewElement.addEventListener('mousedown', function(evt) {
+  if(evt.target.classList.contains('popup')) {
+    evt.target.classList.toggle('popup_opened');
+  }
+});
+
+popupCloseEdit.addEventListener('click', ()=> closePopup(popupEdit));
+buttonOpenAdd.addEventListener('click', ()=> openPopup(popupAdd));
+buttonCloseAdd.addEventListener('click', ()=> closePopup(popupAdd));
+closeView.addEventListener('click', ()=> closePopup(viewElement));
+
+// Редактироване Имени и деятельности
+formEdit.addEventListener('submit', function(evt) {
+  evt.preventDefault();
+  const nameValue = nameInput.value;
+  const jobValue = jobInput.value;
+  profileName.textContent = nameValue;
+  profileJob.textContent = jobValue;
+  nameInput.value = '';
+  jobInput.value = '';
+  closePopup(popupEdit);
+});
+
+export {
+  profileName,
   profileJob,
-  formEdit,
-  nameInput,
-  jobInput,
-  formAdd,
-  addName,
-  addImg,
-  viewElement,
-  keyHandler,
-  viewImage, viewInfo, elementContainer, buttonOpenEdit, buttonOpenAdd, popupEdit, popupAdd, addCardBtn, buttonCloseAdd, popupCloseEdit, closeView, openPopup, closePopup };
+  formEdit, nameInput, jobInput, formAdd,
+  addName, addImg, viewElement, keyHandler,
+  viewImage, viewInfo, elementContainer, buttonOpenEdit,
+  buttonOpenAdd, popupEdit, popupAdd, addCardBtn,
+  buttonCloseAdd, popupCloseEdit, closeView, openPopup, closePopup };
