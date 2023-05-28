@@ -1,3 +1,4 @@
+import { validConfig, toggleButtonState } from './validation.js'
 
 //Имя и профессия на странице
 const profileName = document.querySelector('.profile__title');
@@ -10,8 +11,8 @@ const jobInput = formEdit.querySelector('[name="job"]');
 
 //Форма и поля создания карточки
 const formAdd = document.querySelector('#add-form');
-const addName = formAdd.querySelector('[name="addName"]');
-const addImg = formAdd.querySelector('[name="addImg"]');
+const inputNameFormAddNewCard = formAdd.querySelector('[name="addName"]');
+const inputLinkFormAddNewCard = formAdd.querySelector('[name="addImg"]');
 
 //Елемент картинки
 const viewElement = document.querySelector('#popup-view');
@@ -23,7 +24,7 @@ const elementContainer = document.querySelector('.elements');
 
 //Кнопки
 const buttonOpenEdit = document.querySelector('.profile__edit-button');
-const buttonOpenAdd = document.querySelector('.profile__button');
+const buttonOpenAdd = document.querySelector('.profile__add-button');
 const popupEdit = document.querySelector('#popup-edit');
 const popupAdd = document.querySelector('#popup-add');
 const addCardBtn = add.elements.addCardBtn;
@@ -35,7 +36,6 @@ const closeView = document.querySelector('#popup-view-close');
 function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', keyHandler);
-  addCardBtn.classList.add('popup__button_disabled')
 }
 
 function closePopup(popup) {
@@ -50,11 +50,24 @@ const keyHandler = (evt) => {
   }
 }
 
-buttonOpenEdit.addEventListener('click', () => {
+function editProfileOpen () {
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
   openPopup(popupEdit);
-});
+};
+
+function addCardOpen (validConfig) {
+  openPopup(popupAdd);
+  const inputList = Array.from(popupAdd.querySelectorAll(validConfig.inputSelector));
+  const buttonElement = popupAdd.querySelector(validConfig.submitButtonSelector);
+  toggleButtonState(inputList, buttonElement, validConfig);
+}
+
+// buttonOpenEdit.addEventListener('click', () => {
+//   nameInput.value = profileName.textContent;
+//   jobInput.value = profileJob.textContent;
+//   openPopup(popupEdit);
+// });
 
 popupEdit.addEventListener('mousedown', function(evt) {
   if(evt.target.classList.contains('popup')) {
@@ -74,11 +87,6 @@ viewElement.addEventListener('mousedown', function(evt) {
   }
 });
 
-popupCloseEdit.addEventListener('click', ()=> closePopup(popupEdit));
-buttonOpenAdd.addEventListener('click', ()=> openPopup(popupAdd));
-buttonCloseAdd.addEventListener('click', ()=> closePopup(popupAdd));
-closeView.addEventListener('click', ()=> closePopup(viewElement));
-
 // Редактироване Имени и деятельности
 formEdit.addEventListener('submit', function(evt) {
   evt.preventDefault();
@@ -92,10 +100,7 @@ formEdit.addEventListener('submit', function(evt) {
 });
 
 export {
-  profileName,
-  profileJob,
-  formEdit, nameInput, jobInput, formAdd,
-  addName, addImg, viewElement, keyHandler,
-  viewImage, viewInfo, elementContainer, buttonOpenEdit,
-  buttonOpenAdd, popupEdit, popupAdd, addCardBtn,
-  buttonCloseAdd, popupCloseEdit, closeView, openPopup, closePopup };
+  profileName, profileJob, formEdit, nameInput, jobInput, formAdd, viewElement, 
+  keyHandler, viewImage, viewInfo, elementContainer, buttonOpenEdit,
+  buttonOpenAdd, popupEdit, popupAdd, addCardBtn, editProfileOpen, addCardOpen,
+  buttonCloseAdd, popupCloseEdit, closeView, openPopup, closePopup, inputNameFormAddNewCard, inputLinkFormAddNewCard };
