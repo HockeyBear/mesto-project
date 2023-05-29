@@ -88,8 +88,7 @@ formEdit.addEventListener('submit', function(evt) {
   const jobValue = jobInput.value;
   profileName.textContent = nameValue;
   profileJob.textContent = jobValue;
-  nameInput.value = '';
-  jobInput.value = '';
+  formEdit.reset();
   closePopup(popupEdit);
 });
 
