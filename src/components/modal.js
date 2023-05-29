@@ -63,27 +63,21 @@ function addCardOpen (validConfig) {
   toggleButtonState(inputList, buttonElement, validConfig);
 }
 
-// buttonOpenEdit.addEventListener('click', () => {
-//   nameInput.value = profileName.textContent;
-//   jobInput.value = profileJob.textContent;
-//   openPopup(popupEdit);
-// });
-
 popupEdit.addEventListener('mousedown', function(evt) {
   if(evt.target.classList.contains('popup')) {
-    evt.target.classList.toggle('popup_opened');
+    closePopup(evt.target)
   }
 });
 
 popupAdd.addEventListener('mousedown', function(evt) {
   if(evt.target.classList.contains('popup')) {
-    evt.target.classList.toggle('popup_opened');
+    closePopup(evt.target)
   }
 });
 
 viewElement.addEventListener('mousedown', function(evt) {
   if(evt.target.classList.contains('popup')) {
-    evt.target.classList.toggle('popup_opened');
+    closePopup(evt.target)
   }
 });
 
