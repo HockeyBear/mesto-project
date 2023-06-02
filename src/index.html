@@ -47,7 +47,7 @@
         minlength="2" maxlength="200" pattern="^[a-zA-Zа-яА-Я -]+$" required
         data-error-message="Допустимо использовать латинские буквы, кириллические буквы, знаки дефиса и пробелы">
         <span class="popup__input-error job-error"></span>
-        <button type="submit" class="popup__button">Сохранить</button>
+        <button type="submit" class="popup__button popup__button-edit">Сохранить</button>
       </fieldset>
       </form>
       <button type="button" id="popup-edit-close">
@@ -66,7 +66,7 @@
           <span class="popup__input-error add-name-error"></span>
           <input type="url" class="popup__input" placeholder="Ссылка на картинку" name="addImg" id="add-img" required>
           <span class="popup__input-error add-img-error"></span>
-          <button type="submit" class="popup__button popup__button_disabled" name="addCardBtn" id="popup-add-card" disabled>Создать</button>
+          <button type="submit" class="popup__button popup__button-add popup__button_disabled" name="addCardBtn" id="popup-add-card" disabled>Создать</button>
         </fieldset>
       </form>
       <button type="button" id="popup-add-close">
@@ -90,7 +90,10 @@
       </button>
       <div class="element__figcaption">
         <h3 class="element__title"></h3>
-        <button type="button" class="element__like"></button>
+        <div class="element__likes">
+          <button type="button" class="element__like"></button>
+          <span class="element__quantity-likes">0</span>
+        </div>
       </div>
       <button type="button" class="element__trash"></button>
     </article>

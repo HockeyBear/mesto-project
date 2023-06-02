@@ -1,3 +1,5 @@
+import { profileConfig, config } from './api.js';
+import { renderProfile } from './utils.js';
 import { validConfig, toggleButtonState } from './validation.js'
 
 //Имя и профессия на странице
@@ -27,7 +29,8 @@ const buttonOpenEdit = document.querySelector('.profile__edit-button');
 const buttonOpenAdd = document.querySelector('.profile__add-button');
 const popupEdit = document.querySelector('#popup-edit');
 const popupAdd = document.querySelector('#popup-add');
-const addCardBtn = add.elements.addCardBtn;
+const addCardBtn = document.querySelector('.popup__button-add');
+const editProfileBtn = document.querySelector('.popup__button-edit');
 const buttonCloseAdd = document.querySelector('#popup-add-close');
 const popupCloseEdit = document.querySelector('#popup-edit-close');
 const closeView = document.querySelector('#popup-view-close');
@@ -84,12 +87,18 @@ viewElement.addEventListener('mousedown', function(evt) {
 // Редактироване Имени и деятельности
 formEdit.addEventListener('submit', function(evt) {
   evt.preventDefault();
-  const nameValue = nameInput.value;
-  const jobValue = jobInput.value;
-  profileName.textContent = nameValue;
-  profileJob.textContent = jobValue;
-  formEdit.reset();
-  closePopup(popupEdit);
+  editProfileBtn.textContent = "Сохранение...";
+  profileConfig(config, nameInput, jobInput)
+  .then((res) => {
+    renderProfile(res);
+    closePopup(popupEdit);
+  })
+  .catch((err) => {
+    console.log(err);
+  })
+  .finally(() => {
+    editProfileBtn.textContent = "Сохранить";
+  });
 });
 
 export {

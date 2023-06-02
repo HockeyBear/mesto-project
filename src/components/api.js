@@ -13,10 +13,14 @@ function checkRes(res) {
     }
 }
 
-export const profileConfig = (config) => {
+export const profileConfig = (config, nameInput, jobInput) => {
     return fetch(`${config.baseUrl}/users/me`, {
-        method: 'GET',
-        headers: config.headers
+        method: 'PATCH',
+        headers: config.headers,
+        body: JSON.stringify({
+            name: nameInput.value,
+            about: jobInput.value
+        })
     })
     .then(res => checkRes(res))
 }
@@ -33,7 +37,6 @@ export const postAddCard = (config, element) => {
     return fetch(`${config.baseUrl}/cards`, {
         method: 'POST',
         headers: config.headers,
-        'Content-Type': 'application/json',
         body: JSON.stringify({
             name: element.name,
             link: element.link,
