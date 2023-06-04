@@ -13,14 +13,10 @@ function checkRes(res) {
     }
 }
 
-export const profileConfig = (config, nameInput, jobInput) => {
+export const profileConfig = (config) => {
     return fetch(`${config.baseUrl}/users/me`, {
-        method: 'PATCH',
-        headers: config.headers,
-        body: JSON.stringify({
-            name: nameInput.value,
-            about: jobInput.value
-        })
+        method: 'GET',
+        headers: config.headers
     })
     .then(res => checkRes(res))
 }
@@ -32,6 +28,19 @@ export const getInitCard = (config) => {
     })
     .then(res => checkRes(res))
 }
+
+export const editProfile = (config, nameInput, jobInput) => {
+    return fetch(`${config.baseUrl}/users/me`, {
+        method: 'PATCH',
+        headers: config.headers,
+        body: JSON.stringify({
+            name: nameInput.value,
+            about: jobInput.value
+        })
+    })
+    .then(res => checkRes(res))
+}
+
 
 export const postAddCard = (config, element) => {
     return fetch(`${config.baseUrl}/cards`, {

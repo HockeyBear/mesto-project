@@ -1,12 +1,27 @@
 import './index.css';
 import { config, profileConfig, getInitCard, postAddCard } from '../components/api.js';
 import { validConfig, enableValidation } from '../components/validation.js';
-import { addCard, initAddCard } from '../components/card.js';
+import { addCard } from '../components/card.js';
 import { formAdd, inputNameFormAddNewCard, addCardBtn, inputLinkFormAddNewCard, elementContainer, popupAdd, closePopup,
 buttonOpenEdit, popupCloseEdit, buttonOpenAdd, editProfileOpen, addCardOpen, buttonCloseAdd, closeView, viewElement, popupEdit } from '../components/modal.js';
+import { renderProfile } from '../components/utils';
 
 //----------------------------------------------------------------
 
+Promise.all([
+  profileConfig(config),
+  getInitCard(config)
+])
+.then(([data, cards]) => {
+  renderProfile(data);
+  let initialCards = Array.from(cards.reverse());
+  initialCards.forEach(element => {
+    addCard(element);
+  })
+})
+.catch((err) => {
+  console.log(err);
+})
 
 formAdd.addEventListener('submit', function (evt) {
   evt.preventDefault();
@@ -31,7 +46,6 @@ formAdd.addEventListener('submit', function (evt) {
 
 
 enableValidation(validConfig);
-initAddCard();
 
 buttonOpenEdit.addEventListener('click', ()=> editProfileOpen());
 popupCloseEdit.addEventListener('click', ()=> closePopup(popupEdit));

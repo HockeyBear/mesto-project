@@ -1,4 +1,4 @@
-import { profileConfig, config } from './api.js';
+import { editProfile, config } from './api.js';
 import { renderProfile } from './utils.js';
 import { validConfig, toggleButtonState } from './validation.js'
 
@@ -88,7 +88,7 @@ viewElement.addEventListener('mousedown', function(evt) {
 formEdit.addEventListener('submit', function(evt) {
   evt.preventDefault();
   editProfileBtn.textContent = "Сохранение...";
-  profileConfig(config, nameInput, jobInput)
+  editProfile(config, nameInput, jobInput)
   .then((res) => {
     renderProfile(res);
     closePopup(popupEdit);
