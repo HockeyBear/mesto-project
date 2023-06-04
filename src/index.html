@@ -13,7 +13,9 @@
   <main class="page">
     <section class="profile">
       <div class="profile__page">
-        <img src="<%=require('./image/profile_avatar.jpg')%>" class="profile__avatar" alt="ава">
+        <button type="button" class="profile__avatar-button">
+          <img src="<%=require('./image/profile_avatar.jpg')%>" class="profile__avatar" alt="ава">
+        </button>
         <div class="profile__info">
           <div class="profile__container">
             <h1 class="profile__title">Жак-Ив Кусто</h1>
@@ -83,7 +85,7 @@
       <p class="popup__info"></p>
     </div>
   </div>
-  <template id="element-template">
+    <template id="element-template">
     <article class="element">
       <button type="button" class="element__open-image">
         <img src="" class="element__image" alt="мем">

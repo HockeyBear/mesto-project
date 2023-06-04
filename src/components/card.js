@@ -1,4 +1,4 @@
-import { config, putLike, delLike } from './api.js';
+import { config, putLike, delLike, deleteCard } from './api.js';
 import { viewImage, viewInfo, openPopup, viewElement, elementContainer } from './modal.js'
 import { renderProfile, userId } from './utils.js';
 
@@ -11,20 +11,20 @@ function addCard(card) {
   const templateTitle = element.querySelector('.element__title');
   const likeCount = element.querySelector('.element__quantity-likes');
   const likeButton = element.querySelector('.element__like');
+  const trashButton = element.querySelector('.element__trash');
   templateImg.src = card.link;
   templateImg.alt = card.name;
   templateTitle.textContent = card.name;
-  likeCount.textContent = card.likes;
-  console.log(card);
-  if(card.likes && card.likes.length > 0 && card.likes.some(like => like._id == userId)) {
+  likeCount.textContent = card.likes.length;
+  console.log(card.likes.length);
+  console.log(userId);
+  if(card.likes.some(like => like._id == userId)) {
     likeButton.classList.add("element__like_active");
   }
-  likeButton.addEventListener('click', function() {
-    if(likeButton.target.classList.contains('element__like_active')) {
-      // evt.target.classList.toggle('element__like_active');
-      delLike(config)
+  likeButton.addEventListener('click', (evt) => {
+    if(evt.target.classList.contains('element__like_active')) {
+      delLike(config, card)
       .then((res) => {
-        // removePutLikeToDOM(likes, res, likeButton)
         likeButton.classList.remove('element__like_active');
         likeCount.textContent = res.likes.length;
       })
@@ -32,9 +32,8 @@ function addCard(card) {
         console.log(err);
       })
     } else {
-      putLike(config)
+      putLike(config, card)
       .then((res) => {
-        // addPutLikeToDOM(likes, res, likeButton)
         likeButton.classList.add('element__like_active');
         likeCount.textContent = res.likes.length;
       })
@@ -43,11 +42,20 @@ function addCard(card) {
       });
     }
   });
-  element.querySelector('.element__trash').addEventListener('click', function(evt) {
-    const targetEl = evt.target;
-    const targetItem = targetEl.closest('.element');
-    targetItem.remove();
-  });
+  if(card.owner._id !== userId) {
+    trashButton.classList.add('element__trash-hidden');
+  } else {
+    trashButton.addEventListener('click', function() {
+      const targetItem = trashButton.closest('.element');
+      deleteCard(config, card)
+      .then(() => {
+        targetItem.remove();
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+    });
+  }
   element.querySelector('.element__open-image').addEventListener('click', function() {
     openPopup(viewElement);
     viewImage.src = card.link;
@@ -57,8 +65,4 @@ function addCard(card) {
   return element;
 }
 
-function initAddCard() {
-  initialCards.forEach(item => elementContainer.prepend(addCard(item.name, item.link)));
-}
-
-export { addCard, initAddCard };
+export { addCard };

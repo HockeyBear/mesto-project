@@ -1,4 +1,5 @@
 .element__trash {
+  display: block;
   background-image: url(../../../image/trash.svg);
   background-size: 100%;
   background-color: transparent;
