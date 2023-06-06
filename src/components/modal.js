@@ -1,10 +1,11 @@
-import { editProfile, config } from './api.js';
+import { editProfile, config, editAvatar } from './api.js';
 import { renderProfile } from './utils.js';
 import { validConfig, toggleButtonState } from './validation.js'
 
-//Имя и профессия на странице
+//Имя, профессия и аватар на странице
 const profileName = document.querySelector('.profile__title');
 const profileJob = document.querySelector('.profile__subtitle');
+const profileAvatar = document.querySelector('.profile__avatar');
 
 //Форма и поля имени и профессии
 const formEdit = document.querySelector('#edit-form');
@@ -15,6 +16,10 @@ const jobInput = formEdit.querySelector('[name="job"]');
 const formAdd = document.querySelector('#add-form');
 const inputNameFormAddNewCard = formAdd.querySelector('[name="addName"]');
 const inputLinkFormAddNewCard = formAdd.querySelector('[name="addImg"]');
+
+//Форма и поле сохранения картинки
+const formSave = document.querySelector('#save-form');
+const inputLinkFormSaveAvatar = formSave.querySelector('[name="saveAvatar"]');
 
 //Елемент картинки
 const viewElement = document.querySelector('#popup-view');
@@ -27,12 +32,16 @@ const elementContainer = document.querySelector('.elements');
 //Кнопки
 const buttonOpenEdit = document.querySelector('.profile__edit-button');
 const buttonOpenAdd = document.querySelector('.profile__add-button');
+const buttonOpenSave = document.querySelector('.profile__avatar-edit-button');
 const popupEdit = document.querySelector('#popup-edit');
 const popupAdd = document.querySelector('#popup-add');
+const popupSave = document.querySelector('#popup-save');
 const addCardBtn = document.querySelector('.popup__button-add');
 const editProfileBtn = document.querySelector('.popup__button-edit');
+const saveAvatarBtn = document.querySelector('.popup__button-save-avatar');
 const buttonCloseAdd = document.querySelector('#popup-add-close');
 const popupCloseEdit = document.querySelector('#popup-edit-close');
+const popupCloseEditAvatar = document.querySelector('#popup-save-close');
 const closeView = document.querySelector('#popup-view-close');
 
 //Открывание popup окон / Закрывание popup окон
@@ -66,6 +75,13 @@ function addCardOpen (validConfig) {
   toggleButtonState(inputList, buttonElement, validConfig);
 }
 
+function saveAvatarOpen (validConfig) {
+  openPopup(popupSave);
+  const inputList = Array.from(popupSave.querySelectorAll(validConfig.inputSelector));
+  const buttonElement = popupSave.querySelector(validConfig.submitButtonSelector);
+  toggleButtonState(inputList, buttonElement, validConfig);
+}
+
 popupEdit.addEventListener('mousedown', function(evt) {
   if(evt.target.classList.contains('popup')) {
     closePopup(evt.target)
@@ -77,6 +93,12 @@ popupAdd.addEventListener('mousedown', function(evt) {
     closePopup(evt.target)
   }
 });
+
+popupSave.addEventListener('mousedown', function(evt) {
+  if(evt.target.classList.contains('popup')) {
+    closePopup(evt.target)
+  }
+})
 
 viewElement.addEventListener('mousedown', function(evt) {
   if(evt.target.classList.contains('popup')) {
@@ -101,8 +123,26 @@ formEdit.addEventListener('submit', function(evt) {
   });
 });
 
+formSave.addEventListener('submit', function(evt) {
+  evt.preventDefault();
+  saveAvatarBtn.textContent = "Сохранение...";
+  editAvatar(config, inputLinkFormSaveAvatar)
+  .then((res) => {
+    renderProfile(res);
+    closePopup(popupSave);
+  })
+  .catch((err) => {
+    console.log(err);
+  })
+  .finally(() => {
+    saveAvatarBtn.textContent = "Сохранить";
+  });
+});
+
 export {
   profileName, profileJob, formEdit, nameInput, jobInput, formAdd, viewElement, 
   keyHandler, viewImage, viewInfo, elementContainer, buttonOpenEdit,
-  buttonOpenAdd, popupEdit, popupAdd, addCardBtn, editProfileOpen, addCardOpen,
-  buttonCloseAdd, popupCloseEdit, closeView, openPopup, closePopup, inputNameFormAddNewCard, inputLinkFormAddNewCard };
+  buttonOpenAdd, popupEdit, popupAdd, popupSave, addCardBtn, editProfileOpen, addCardOpen,
+  buttonCloseAdd, popupCloseEdit, closeView, openPopup, closePopup, inputNameFormAddNewCard,
+  inputLinkFormAddNewCard, formSave, inputLinkFormSaveAvatar, saveAvatarOpen, buttonOpenSave,
+  popupCloseEditAvatar, saveAvatarBtn, profileAvatar };

@@ -4,7 +4,8 @@ import { validConfig, enableValidation } from '../components/validation.js';
 import { addCard } from '../components/card.js';
 import {
   formAdd, inputNameFormAddNewCard, addCardBtn, inputLinkFormAddNewCard, elementContainer, popupAdd, closePopup,
-  buttonOpenEdit, popupCloseEdit, buttonOpenAdd, editProfileOpen, addCardOpen, buttonCloseAdd, closeView, viewElement, popupEdit
+  buttonOpenEdit, popupCloseEdit, buttonOpenAdd, editProfileOpen, addCardOpen, buttonCloseAdd, closeView, viewElement, popupEdit,
+  buttonOpenSave, popupSave, saveAvatarOpen, popupCloseEditAvatar
 } from '../components/modal.js';
 import { renderProfile } from '../components/utils';
 
@@ -52,3 +53,5 @@ popupCloseEdit.addEventListener('click', () => closePopup(popupEdit));
 buttonOpenAdd.addEventListener('click', () => addCardOpen(validConfig));
 buttonCloseAdd.addEventListener('click', () => closePopup(popupAdd));
 closeView.addEventListener('click', () => closePopup(viewElement));
+buttonOpenSave.addEventListener('click', ()=> saveAvatarOpen(validConfig));
+popupCloseEditAvatar.addEventListener('click', ()=> closePopup(popupSave));

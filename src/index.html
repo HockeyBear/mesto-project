@@ -13,9 +13,10 @@
   <main class="page">
     <section class="profile">
       <div class="profile__page">
-        <button type="button" class="profile__avatar-button">
+        <div class="profile__avatar_container">
           <img src="<%=require('./image/profile_avatar.jpg')%>" class="profile__avatar" alt="ава">
-        </button>
+          <button type="button" class="profile__avatar-edit-button"></button>
+        </div>
         <div class="profile__info">
           <div class="profile__container">
             <h1 class="profile__title">Жак-Ив Кусто</h1>
@@ -76,6 +77,30 @@
       </button>
     </div>
   </div>
+  <div class="popup" id="popup-save">
+    <div class="popup__container">
+      <h2 class="popup__heading">Обновить аватар</h2>
+      <form class="popup__form" name="save" id="save-form" novalidate>
+        <fieldset class="popup__set">
+          <input type="url" class="popup__input" placeholder="Ссылка на картинку" name="saveAvatar" id="save-avatar" required>
+          <span class="popup__input-error save-avatar-error"></span>
+          <button type="submit" class="popup__button popup__button-save-avatar popup__button_disabled" name="saveAvatarBtn" id="popup-save-avatar" disabled>Сохранить</button>
+        </fieldset>
+      </form>
+      <button type="button" id="popup-save-close">
+        <img class="popup__close" src="<%=require('./image/close.svg')%>" alt="закрыть">
+      </button>
+    </div>
+  </div>
+  <!-- <div class="popup" id="popup-del">
+    <div class="popup__container">
+      <h2 class="popup__heading">Вы уверены?</h2>
+        <button type="submit" class="popup__button popup__button-del" name="delCardBtn" id="popup-del-card">Да</button>
+      <button type="button" id="popup-save-close">
+        <img class="popup__close" src="<%=require('./image/close.svg')%>" alt="закрыть">
+      </button>
+    </div>
+  </div> -->
   <div class="popup popup_imageLarge" id="popup-view">
     <div class="popup__container popup__container_view-image">
       <button type="button" id="popup-view-close">
