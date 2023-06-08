@@ -17,7 +17,7 @@ Promise.all([
 ])
   .then(([data, cards]) => {
     renderProfile(data);
-    let initialCards = Array.from(cards.reverse());
+    const initialCards = Array.from(cards.reverse());
     initialCards.forEach(element => {
       elementContainer.prepend(addCard(element));
     })

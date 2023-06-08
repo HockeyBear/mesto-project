@@ -43,11 +43,11 @@
       <form class="popup__form" name="edit" id="edit-form" novalidate>
         <fieldset class="popup__set">
         <input type="text" class="popup__input" placeholder="Имя и Фамилия" name="namee" id="name"
-        minlength="2" maxlength="40" pattern="^[a-zA-Zа-яА-Я -]+$" required
+        minlength="2" maxlength="40" pattern="^[a-zA-Zа-яА-Я\s\-]+$" required
         data-error-message="Допустимо использовать латинские буквы, кириллические буквы, знаки дефиса и пробелы">
         <span class="popup__input-error name-error"></span>
         <input type="text" class="popup__input" placeholder="Вид деятельности" name="job" id="job" 
-        minlength="2" maxlength="200" pattern="^[a-zA-Zа-яА-Я -]+$" required
+        minlength="2" maxlength="200" pattern="^[a-zA-Zа-яА-Я\s\-]+$" required
         data-error-message="Допустимо использовать латинские буквы, кириллические буквы, знаки дефиса и пробелы">
         <span class="popup__input-error job-error"></span>
         <button type="submit" class="popup__button popup__button-edit">Сохранить</button>
@@ -64,7 +64,7 @@
       <form class="popup__form" name="add" id="add-form" novalidate>
         <fieldset class="popup__set">
           <input type="text" class="popup__input add-popup__form" placeholder="Название" name="addName" id="add-name" minlength="2" maxlength="30"
-          pattern="^[a-zA-Zа-яА-Я -]+$" required
+          pattern="^[a-zA-Zа-яА-Я\s\-]+$" required
           data-error-message="Допустимо использовать латинские буквы, кириллические буквы, знаки дефиса и пробелы">
           <span class="popup__input-error add-name-error"></span>
           <input type="url" class="popup__input" placeholder="Ссылка на картинку" name="addImg" id="add-img" required>
