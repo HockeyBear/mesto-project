@@ -13,7 +13,7 @@ function checkRes(res) {
     }
 }
 
-export const profileConfig = (config) => {
+export const getUserInfo = (config) => {
     return fetch(`${config.baseUrl}/users/me`, {
         method: 'GET',
         headers: config.headers

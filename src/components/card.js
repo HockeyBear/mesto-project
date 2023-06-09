@@ -22,7 +22,7 @@ function addCard(card) {
     likeButton.classList.add("element__like_active");
   }
   likeButton.addEventListener('click', (evt) => {
-    if(evt.target.classList.contains('eЁlement__like_active')) {
+    if(evt.target.classList.contains('element__like_active')) {
       delLike(config, card)
       .then((res) => {
         likeButton.classList.remove('element__like_active');

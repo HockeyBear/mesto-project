@@ -1,5 +1,3 @@
-import { editProfile, config, editAvatar } from './api.js';
-import { renderProfile } from './utils.js';
 import { validConfig, toggleButtonState } from './validation.js'
 
 //Имя, профессия и аватар на странице
@@ -44,105 +42,56 @@ const popupCloseEdit = document.querySelector('#popup-edit-close');
 const popupCloseEditAvatar = document.querySelector('#popup-save-close');
 const closeView = document.querySelector('#popup-view-close');
 
+//Элементы
+const cardFormInputs = Array.from(popupAdd.querySelectorAll(validConfig.inputSelector));
+const cardSubmitButton = popupAdd.querySelector(validConfig.submitButtonSelector);
+const avatarFormInputs = Array.from(popupSave.querySelectorAll(validConfig.inputSelector));
+const avatarSubmitButton = popupSave.querySelector(validConfig.submitButtonSelector);
+
 //Открывание popup окон / Закрывание popup окон
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-  document.addEventListener('keydown', keyHandler);
+  document.addEventListener('keydown', handleEscape);
 }
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', keyHandler);
+  document.removeEventListener('keydown', handleEscape);
 }
 
-const keyHandler = (evt) => {
+const handleEscape = (evt) => {
   if(evt.key === 'Escape') {
     const popupActive = document.querySelector('.popup_opened');
     closePopup(popupActive);
   }
 }
 
-function editProfileOpen () {
+function openProfilePopup () {
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
   openPopup(popupEdit);
 };
 
-function addCardOpen (validConfig) {
+function openCardPopup (validConfig) {
   openPopup(popupAdd);
-  const inputList = Array.from(popupAdd.querySelectorAll(validConfig.inputSelector));
-  const buttonElement = popupAdd.querySelector(validConfig.submitButtonSelector);
-  toggleButtonState(inputList, buttonElement, validConfig);
+  toggleButtonState(cardFormInputs, cardSubmitButton, validConfig);
 }
 
-function saveAvatarOpen (validConfig) {
+function openAvatarPopup (validConfig) {
   openPopup(popupSave);
-  const inputList = Array.from(popupSave.querySelectorAll(validConfig.inputSelector));
-  const buttonElement = popupSave.querySelector(validConfig.submitButtonSelector);
-  toggleButtonState(inputList, buttonElement, validConfig);
+  toggleButtonState(avatarFormInputs, avatarSubmitButton, validConfig);
 }
 
-popupEdit.addEventListener('mousedown', function(evt) {
-  if(evt.target.classList.contains('popup')) {
-    closePopup(evt.target)
+function handleOverlay(evt) {
+  if (evt.target.classList.contains("popup")) {
+    closePopup(evt.target);
   }
-});
-
-popupAdd.addEventListener('mousedown', function(evt) {
-  if(evt.target.classList.contains('popup')) {
-    closePopup(evt.target)
-  }
-});
-
-popupSave.addEventListener('mousedown', function(evt) {
-  if(evt.target.classList.contains('popup')) {
-    closePopup(evt.target)
-  }
-})
-
-viewElement.addEventListener('mousedown', function(evt) {
-  if(evt.target.classList.contains('popup')) {
-    closePopup(evt.target)
-  }
-});
-
-// Редактироване Имени и деятельности
-formEdit.addEventListener('submit', function(evt) {
-  evt.preventDefault();
-  editProfileBtn.textContent = "Сохранение...";
-  editProfile(config, nameInput, jobInput)
-  .then((res) => {
-    renderProfile(res);
-    closePopup(popupEdit);
-  })
-  .catch((err) => {
-    console.log(err);
-  })
-  .finally(() => {
-    editProfileBtn.textContent = "Сохранить";
-  });
-});
-
-formSave.addEventListener('submit', function(evt) {
-  evt.preventDefault();
-  saveAvatarBtn.textContent = "Сохранение...";
-  editAvatar(config, inputLinkFormSaveAvatar)
-  .then((res) => {
-    renderProfile(res);
-    closePopup(popupSave);
-  })
-  .catch((err) => {
-    console.log(err);
-  })
-  .finally(() => {
-    saveAvatarBtn.textContent = "Сохранить";
-  });
-});
+}
 
 export {
-  profileName, profileJob, formEdit, nameInput, jobInput, formAdd, viewElement, 
-  keyHandler, viewImage, viewInfo, elementContainer, buttonOpenEdit,
-  buttonOpenAdd, popupEdit, popupAdd, popupSave, addCardBtn, editProfileOpen, addCardOpen,
+  profileName, profileJob, nameInput, jobInput, formAdd, formEdit, formSave, viewElement, 
+  handleEscape, viewImage, viewInfo, elementContainer, buttonOpenEdit,
+  buttonOpenAdd, popupEdit, popupAdd, popupSave, addCardBtn, openProfilePopup, openCardPopup,
   buttonCloseAdd, popupCloseEdit, closeView, openPopup, closePopup, inputNameFormAddNewCard,
-  inputLinkFormAddNewCard, formSave, inputLinkFormSaveAvatar, saveAvatarOpen, buttonOpenSave,
-  popupCloseEditAvatar, saveAvatarBtn, profileAvatar };
+  inputLinkFormAddNewCard, inputLinkFormSaveAvatar, openAvatarPopup, buttonOpenSave,
+  popupCloseEditAvatar, saveAvatarBtn, profileAvatar, handleOverlay, editProfileBtn };
