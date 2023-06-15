@@ -21,9 +21,3 @@
     background-color: rgba(0, 0, 0, 0.8);
     opacity: 1;
 }
-
-@media screen and (max-width: 918px) {
-    .profile__avatar-edit-button {
-        left: 27px;
-    }
-  }
